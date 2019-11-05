@@ -15,4 +15,5 @@ struct pNames popular;
 
 /* Function definitions */
 int removeCommas ( char * );
+int chop (char *);
 

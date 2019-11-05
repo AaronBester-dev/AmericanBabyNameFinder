@@ -136,9 +136,9 @@ while(stopLoop == 0){
     fclose(f1);
 
     while(searchTopRankLoop == 0){
-      printf("Would you like to see a rank, search for a name, or see the top 10 [rank, search, top]");
+      printf("Would you like to see a rank, search for a name, or see the top 10 [rank, search, top]\n");
       fgets(userResponse, 200, stdin);
-      printf("%s",userResponse );
+    
       if((strcmp(userResponse,"rank\n")) == 0){
         searchTopRankLoop = 1;
         while(rankNumLoop == 0){
@@ -187,6 +187,7 @@ while(stopLoop == 0){
           searchTopRankLoop = 1;
           printf("What name do you wish to search for? [case sensitive]\n");
           fgets(searchName, 200, stdin);
+          chop(searchName);
 
           while(maleFemSearchLoop == 0){
             printf("Do you wish to search male (0), female (1), or both (2) name(s)? [0-2]\n");
@@ -207,7 +208,7 @@ while(stopLoop == 0){
               }
             }
 
-            if((atoi(userResponse)) == 1){
+            else if((atoi(userResponse)) == 1){
                   maleFemSearchLoop = 1;
               for(i = 0; i < 200; i++){
                 if((strcmp(searchName,popular.femaleName[i])) == 0){
@@ -223,7 +224,7 @@ while(stopLoop == 0){
               }
             }
 
-            if((atoi(userResponse)) == 2){
+            else if((atoi(userResponse)) == 2){
                   maleFemSearchLoop = 1;
               for(i = 0; i < 200; i++){
 

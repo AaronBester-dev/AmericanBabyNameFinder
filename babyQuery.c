@@ -30,19 +30,22 @@ int searchTopRankLoop = 0;
 int rankNumLoop = 0;
 int maleFemRankLoop = 0;
 int maleFemSearchLoop = 0;
-int searchNameLoop = 0;
 int rankNum = 0;
+int decadeReturnLoop = 0;
+int finalQuestionLoop = 0;
 FILE *f1;
 
 
 
 while(stopLoop == 0){
 
-  printf("What decade do you want to look at? [1880 to 2010]\n");
-  fgets(userResponse, 200, stdin);
-  decade = atoi(userResponse);
-
   while(decadeLoop == 0){
+
+    printf("What decade do you want to look at? [1880 to 2010]\n");
+    fgets(userResponse, 200, stdin);
+    decade = atoi(userResponse);
+
+
 
     if(decade == 1880){
       strcpy(fileName,"1880Names.txt");
@@ -133,10 +136,10 @@ while(stopLoop == 0){
     fclose(f1);
 
     while(searchTopRankLoop == 0){
-      printf("Would you like to see a rank, search for a name, or see the top 10 [rank, search, top]\n");
+      printf("Would you like to see a rank, search for a name, or see the top 10 [rank, search, top]");
       fgets(userResponse, 200, stdin);
-
-      if(strcmp(userResponse, "rank")) == 0){
+      printf("%s",userResponse );
+      if((strcmp(userResponse,"rank\n")) == 0){
         searchTopRankLoop = 1;
         while(rankNumLoop == 0){
 
@@ -153,35 +156,35 @@ while(stopLoop == 0){
               fgets(userResponse, 200, stdin);
 
               if((atoi(userResponse)) == 0){
-                printf("Rank %d: Male:%s (%d) \n",rankNum, popular.maleName[rankNum-1], popular.maleNumber[rankNum-1])
+                printf("Rank %d: Male:%s (%d) \n",rankNum, popular.maleName[rankNum-1], popular.maleNumber[rankNum-1]);
                 maleFemRankLoop = 1;
               }
 
               else if((atoi(userResponse)) == 1){
-                printf("Rank %d: Female:%s (%d) \n",rankNum, popular.femaleName[rankNum-1], popular.femaleNumber[rankNum-1])
+                printf("Rank %d: Female:%s (%d) \n",rankNum, popular.femaleName[rankNum-1], popular.femaleNumber[rankNum-1]);
                 maleFemRankLoop = 1;
               }
 
               else if((atoi(userResponse)) == 2){
-                printf("Rank %d: Male:%s (%d) and Female:%s (%d) \n",rankNum, popular.maleName[rankNum-1], popular.maleNumber[rankNum-1], popular.femaleName[rankNum-1],popular.femaleNumber[rankNum-1])
+                printf("Rank %d: Male:%s (%d) and Female:%s (%d) \n",rankNum, popular.maleName[rankNum-1], popular.maleNumber[rankNum-1], popular.femaleName[rankNum-1],popular.femaleNumber[rankNum-1]);
                 maleFemRankLoop = 1;
               }
               else{
-                printf("Error - Invalid response! Please put in a number from 0 to 2. [0-2]\n", );
+                printf("Error - Invalid response! Please put in a number from 0 to 2. [0-2]\n");
               }
             }
           }
 
           else{
-            printf("Error - Invalid rank! Please put in a number from 1 and 200. [1-200]\n", );
+            printf("Error - Invalid rank! Please put in a number from 1 and 200. [1-200]\n");
           }
 
         }
 
 
       }
-      if((strcmp(userResponse,"search")) == 0) {
-        searchTopRankLoop = 1;
+      else if((strcmp(userResponse,"search\n")) == 0) {
+          searchTopRankLoop = 1;
           printf("What name do you wish to search for? [case sensitive]\n");
           fgets(searchName, 200, stdin);
 
@@ -193,11 +196,14 @@ while(stopLoop == 0){
               maleFemSearchLoop = 1;
               for(i = 0; i < 200; i++){
                 if((strcmp(searchName,popular.maleName[i])) == 0){
-                  printf("In %d the male name %s is ranked %d with a count of %d.\n", decade, searchName, popular.rank[i], popular.maleNumber[i] );
+                  maleNameFound = i;
                 }
-                else{
-                  printf("In %d, the male name %s is not ranked.\n",decade, searchName );
-                }
+              }
+              if(maleNameFound != 0){
+                  printf("In %d the male name %s is ranked %d with a count of %d.\n", decade, searchName, popular.rank[maleNameFound], popular.maleNumber[maleNameFound] );
+              }
+              else{
+                printf("In %d, the male name %s is not ranked.\n",decade, searchName );
               }
             }
 
@@ -205,11 +211,15 @@ while(stopLoop == 0){
                   maleFemSearchLoop = 1;
               for(i = 0; i < 200; i++){
                 if((strcmp(searchName,popular.femaleName[i])) == 0){
-                  printf("In %d the male name %s is ranked %d with a count of %d.\n", decade, searchName, popular.rank[i], popular.femaleNumber[i] );
+                  femaleNameFound = i;
                 }
-                else{
-                  printf("In %d, the male name %s is not ranked.\n",decade, searchName );
-                }
+
+              }
+              if(femaleNameFound != i){
+                  printf("In %d the female name %s is ranked %d with a count of %d.\n", decade, searchName, popular.rank[femaleNameFound], popular.femaleNumber[femaleNameFound] );
+              }
+              else{
+                printf("In %d, the male name %s is not ranked.\n",decade, searchName );
               }
             }
 
@@ -230,10 +240,10 @@ while(stopLoop == 0){
               if((maleNameFound != 0) && (femaleNameFound != 0)){
                 printf("In %d the female name %s is ranked %d with a count of %d and the male name %s is ranked %d with a count of %d.\n", decade, searchName, popular.rank[femaleNameFound], popular.femaleNumber[femaleNameFound], searchName, popular.rank[maleNameFound],popular.maleNumber[maleNameFound] );
               }
-              if((maleNameFound != 0) && (femaleNameFound == 0)){
+              else if((maleNameFound != 0) && (femaleNameFound == 0)){
                 printf("In %d the female name %s is not ranked and the male name %s is ranked %d with a count of %d\n", decade, searchName, searchName, popular.rank[maleNameFound], popular.maleNumber[maleNameFound] );
               }
-              if((maleNameFound == 0) && (femaleNameFound != 0)){
+              else if((maleNameFound == 0) && (femaleNameFound != 0)){
                 printf("In %d the female name %s is ranked %d with a count of %d and the male name %s is not ranked\n", decade, searchName, popular.rank[femaleNameFound],popular.femaleNumber[femaleNameFound], searchName );
               }
               else{
@@ -241,13 +251,13 @@ while(stopLoop == 0){
               }
             }
             else{
-              printf("Error - Invalid number. Please enter a number from 0 to 2. [0-2]\n", );
+              printf("Error - Invalid number. Please enter a number from 0 to 2. [0-2]\n");
             }
 
           }
 
       }
-      if((strcmp(userResponse,"top")) == 0) {
+      else if((strcmp(userResponse,"top\n")) == 0) {
         searchTopRankLoop = 1;
         for(i=0; i<10;i++){
           printf("%d     %s     %d     %s     %d\n",popular.rank[i],popular.maleName[i],popular.maleNumber[i],popular.femaleName[i],popular.femaleNumber[i] );
@@ -257,8 +267,46 @@ while(stopLoop == 0){
         printf("Error - Please enter either rank search or top all lowercase. [rank,search,top]\n");
       }
     }
-    
+  while (decadeReturnLoop == 0) {
+    printf("Do you want to ask another question about %d? [Y or N]\n", decade);
+    fgets(userResponse, 200, stdin);
+    if(userResponse[0] == *("Y")){
+      decadeReturnLoop = 1;
+      searchTopRankLoop = 0;
+      maleFemRankLoop = 0;
+      rankNumLoop = 0;
+      maleFemSearchLoop = 0;
+    }
+  else if(userResponse[0] == *("N")){
+      decadeReturnLoop = 1;
+      while(finalQuestionLoop == 0){
+        printf("Would you like to select another year? [Y or N]\n");
+        fgets(userResponse, 200, stdin);
+        if(userResponse[0] == *("Y")){
+          finalQuestionLoop = 1;
+          searchTopRankLoop = 0;
+          maleFemRankLoop = 0;
+          rankNumLoop = 0;
+          maleFemSearchLoop = 0;
+          decadeLoop = 0;
+        }
+        else if(userResponse[0] == *("N")){
+        printf("Thank you for using babyQuery.\n");
+          stopLoop = 1;
+          finalQuestionLoop = 1;
+        }
+        else{
+            printf("Error - Incorrect Response. Enter either Y or N [Y or N]\n");
+        }
+      }
 
+    }
+    else{
+      printf("Error - Incorrect Response. Enter either Y or N [Y or N]\n");
+    }
+  }
+  decadeReturnLoop = 0;
+  finalQuestionLoop = 0;
   }
 return(0);
 }

@@ -12,6 +12,7 @@ struct pNames {
    int  femaleNumber[ROWS];
 };
 struct pNames popular;
+struct pNames popularYear2;
 
 /* Function definitions */
 int removeCommas ( char * );

@@ -17,7 +17,8 @@ babyQuery.o: babyQuery.c
 		gcc -ansi -Wall -c  babyQuery.c
 
 removeCommas.o: removeCommas.c
-		gcc -ansi -Wall -c removeCommas.c
+	gcc -ansi -Wall -c removeCommas.c
+		
 
 chop.o: chop.c
 	gcc -ansi -Wall -c chop.c

@@ -5,14 +5,7 @@
 #include "babies.h"
 
 int main(){
-  struct pNames {
-     int  year;
-     int  rank[ROWS];
-     char maleName[ROWS][MAXLENGTH];
-     int  maleNumber[ROWS];
-     char femaleName[ROWS][MAXLENGTH];
-     int  femaleNumber[ROWS];
-  };
+
 char userResponse[200];
 char maleSNumber[100];
 char femaleSNumber[100];
@@ -110,7 +103,8 @@ while(stopLoop == 0){
     }
 
     else{
-      printf("Error - Decade entered does not exist. Please enter decade between 1880 and 2010\n");
+      printf("Acceptable decades are 1880, 1890, 1900, 1910, 1920, 1930, 1940, 1950, 1960,"
+"1970, 1980, 1990, 2000, or 2010. No other numbers are acceptable.\n");
     }
   }
 
@@ -138,7 +132,7 @@ while(stopLoop == 0){
     while(searchTopRankLoop == 0){
       printf("Would you like to see a rank, search for a name, or see the top 10 [rank, search, top]\n");
       fgets(userResponse, 200, stdin);
-    
+
       if((strcmp(userResponse,"rank\n")) == 0){
         searchTopRankLoop = 1;
         while(rankNumLoop == 0){
@@ -170,13 +164,13 @@ while(stopLoop == 0){
                 maleFemRankLoop = 1;
               }
               else{
-                printf("Error - Invalid response! Please put in a number from 0 to 2. [0-2]\n");
+                printf("Only the numbers 0, 1, or 2 are acceptable.\n");
               }
             }
           }
 
           else{
-            printf("Error - Invalid rank! Please put in a number from 1 and 200. [1-200]\n");
+            printf("Only numbers between 1 and 200 are acceptable\n");
           }
 
         }
@@ -252,7 +246,7 @@ while(stopLoop == 0){
               }
             }
             else{
-              printf("Error - Invalid number. Please enter a number from 0 to 2. [0-2]\n");
+              printf("Only the numbers 0, 1, or 2 are acceptable.\n");
             }
 
           }
@@ -261,11 +255,11 @@ while(stopLoop == 0){
       else if((strcmp(userResponse,"top\n")) == 0) {
         searchTopRankLoop = 1;
         for(i=0; i<10;i++){
-          printf("%d     %s     %d     %s     %d\n",popular.rank[i],popular.maleName[i],popular.maleNumber[i],popular.femaleName[i],popular.femaleNumber[i] );
+          printf("%-2d   %-11s %6d     %-11s %6d\n",popular.rank[i],popular.maleName[i],popular.maleNumber[i],popular.femaleName[i],popular.femaleNumber[i] );
         }
       }
       else{
-        printf("Error - Please enter either rank search or top all lowercase. [rank,search,top]\n");
+        printf("Please type in rank, search, or top exactly as requested.\n");
       }
     }
   while (decadeReturnLoop == 0) {
@@ -297,13 +291,13 @@ while(stopLoop == 0){
           finalQuestionLoop = 1;
         }
         else{
-            printf("Error - Incorrect Response. Enter either Y or N [Y or N]\n");
+            printf("Only the single characters Y or N are acceptable.\n");
         }
       }
 
     }
     else{
-      printf("Error - Incorrect Response. Enter either Y or N [Y or N]\n");
+      printf("Only the single characters Y or N are acceptable.\n");
     }
   }
   decadeReturnLoop = 0;

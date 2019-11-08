@@ -19,7 +19,7 @@ int maleNameDecade2Found = 0;
 int femaleNameDecade1Found = 0;
 int femaleNameDecade2Found = 0;
 int stopLoop = 0;
-int decadeLoop = 0;
+
 int decade1 = 0;
 int decade2 = 0;
 int index = 0;
@@ -201,11 +201,11 @@ while(decade1Loop == 0){
       index = 0;
       while (fgets(string,100,f1)){
         sscanf(string, "%d %s %s %s %s", &popular.rank[index], popular.maleName[index], maleSNumber, popular.femaleName[index], femaleSNumber);
-        printf("%s\n",maleSNumber );
+
         removeCommas(maleSNumber);
-    printf("%s\n",maleSNumber );
+
         popular.maleNumber[index] = atoi(maleSNumber);
-          printf("%d\n",popular.maleNumber[index] );
+
         removeCommas(femaleSNumber);
         popular.femaleNumber[index] = atoi(femaleSNumber);
         index++;
@@ -261,13 +261,14 @@ while(decade1Loop == 0){
               fgets(userResponse, 200, stdin);
 
               if((atoi(userResponse)) == 0){
-                printf("Rank %d: %d Male:%s (%d) \n%d: Male: %s %d\n",rankNum,decade1, popular.maleName[rankNum-1], popular.maleNumber[rankNum-1],decade2, popularYear2.maleName[rankNum-1],popularYear2.maleNumber[rankNum-1]);
+                printf("Rank %d: %d: Male:%s (%d) \n"
+                       "          %d: Male:%s (%d)\n",rankNum,decade1, popular.maleName[rankNum-1], popular.maleNumber[rankNum-1],decade2, popularYear2.maleName[rankNum-1],popularYear2.maleNumber[rankNum-1]);
                 maleFemRankLoop = 1;
               }
 
               else if((atoi(userResponse)) == 1){
-              printf("Rank %d: %d Female:%s (%d) \n"
-                     "     %d: Female: %s %d\n",
+              printf("Rank %d: %d: Female:%s (%d) \n"
+                     "          %d: Female:%s (%d)\n",
                      rankNum,decade1, popular.femaleName[rankNum-1],
                      popular.femaleNumber[rankNum-1],decade2,
                      popularYear2.femaleName[rankNum-1],popularYear2.femaleNumber[rankNum-1]);
@@ -276,10 +277,10 @@ while(decade1Loop == 0){
 
               else if((atoi(userResponse)) == 2){
                 printf("Rank %d: %d: Male:%s (%d) and Female:%s (%d) \n"
-                "Rank %d: %d: Male:%s (%d) and Female:%s (%d) \n",
+                       "          %d: Male:%s (%d) and Female:%s (%d) \n",
                 rankNum, decade1, popular.maleName[rankNum-1],
                 popular.maleNumber[rankNum-1], popular.femaleName[rankNum-1],
-                popular.femaleNumber[rankNum-1],rankNum,decade2,popularYear2.maleName[rankNum-1],
+                popular.femaleNumber[rankNum-1],decade2,popularYear2.maleName[rankNum-1],
                 popularYear2.maleNumber[rankNum-1],popularYear2.femaleName[rankNum-1],
                 popularYear2.femaleNumber[rankNum-1]);
                 maleFemRankLoop = 1;
@@ -458,7 +459,8 @@ while(decade1Loop == 0){
           maleFemRankLoop = 0;
           rankNumLoop = 0;
           maleFemSearchLoop = 0;
-          decadeLoop = 0;
+          decade1Loop = 0;
+          decade2Loop = 0;
         }
         else if(userResponse[0] == *("N")){
         printf("Thank you for using babiesQuery.\n");

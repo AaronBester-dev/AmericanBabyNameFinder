@@ -48,7 +48,7 @@ while(decade1Loop == 0){
 
         while(decadeEqualCheck == 0){
           printf("What decade do you want to look at? [1880 to 2010]\n");
-          fgets(userResponse, 100, stdin);
+          fgets(userResponse, 200, stdin);
           sscanf(userResponse, "%d %d", &decade1, &decade2);
 
           if(decade1 == decade2){
@@ -199,7 +199,7 @@ while(decade1Loop == 0){
     popular.year = decade1;
     if ((f1 = fopen(fileName1, "r")) !=NULL){
       index = 0;
-      while (fgets(string,100,f1)){
+      while (fgets(string,200,f1)){
         sscanf(string, "%d %s %s %s %s", &popular.rank[index], popular.maleName[index], maleSNumber, popular.femaleName[index], femaleSNumber);
 
         removeCommas(maleSNumber);

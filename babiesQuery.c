@@ -262,13 +262,13 @@ while(decade1Loop == 0){
 
               if((atoi(userResponse)) == 0){
                 printf("Rank %d: %d: Male:%s (%d) \n"
-                       "          %d: Male:%s (%d)\n",rankNum,decade1, popular.maleName[rankNum-1], popular.maleNumber[rankNum-1],decade2, popularYear2.maleName[rankNum-1],popularYear2.maleNumber[rankNum-1]);
+                       "        %d: Male:%s (%d)\n",rankNum,decade1, popular.maleName[rankNum-1], popular.maleNumber[rankNum-1],decade2, popularYear2.maleName[rankNum-1],popularYear2.maleNumber[rankNum-1]);
                 maleFemRankLoop = 1;
               }
 
               else if((atoi(userResponse)) == 1){
               printf("Rank %d: %d: Female:%s (%d) \n"
-                     "          %d: Female:%s (%d)\n",
+                     "        %d: Female:%s (%d)\n",
                      rankNum,decade1, popular.femaleName[rankNum-1],
                      popular.femaleNumber[rankNum-1],decade2,
                      popularYear2.femaleName[rankNum-1],popularYear2.femaleNumber[rankNum-1]);
@@ -277,7 +277,7 @@ while(decade1Loop == 0){
 
               else if((atoi(userResponse)) == 2){
                 printf("Rank %d: %d: Male:%s (%d) and Female:%s (%d) \n"
-                       "          %d: Male:%s (%d) and Female:%s (%d) \n",
+                       "        %d: Male:%s (%d) and Female:%s (%d) \n",
                 rankNum, decade1, popular.maleName[rankNum-1],
                 popular.maleNumber[rankNum-1], popular.femaleName[rankNum-1],
                 popular.femaleNumber[rankNum-1],decade2,popularYear2.maleName[rankNum-1],
@@ -321,15 +321,19 @@ while(decade1Loop == 0){
               }
               if(maleNameDecade1Found != 0){
                   printf("In %d the male name %s is ranked %d with a count of %d.\n", decade1, searchName, popular.rank[maleNameDecade1Found], popular.maleNumber[maleNameDecade1Found] );
+                  maleNameDecade1Found = 0;
               }
               else{
                 printf("In %d, the male name %s is not ranked.\n",decade1, searchName );
+                maleNameDecade1Found = 0;
               }
               if(maleNameDecade2Found!= 0){
                   printf("In %d the male name %s is ranked %d with a count of %d.\n", decade2, searchName, popularYear2.rank[maleNameDecade2Found], popularYear2.maleNumber[maleNameDecade2Found] );
+                  maleNameDecade1Found = 0;
               }
               else{
                   printf("In %d, the male name %s is not ranked.\n",decade2, searchName );
+                  maleNameDecade1Found = 0;
               }
 
             }
@@ -344,17 +348,23 @@ while(decade1Loop == 0){
                   femaleNameDecade2Found = i;
                 }
               }
-              if(femaleNameDecade1Found != i){
+              if(femaleNameDecade1Found != 0){
                   printf("In %d the female name %s is ranked %d with a count of %d.\n", decade1, searchName, popular.rank[femaleNameDecade1Found], popular.femaleNumber[femaleNameDecade1Found] );
+                    femaleNameDecade1Found = 0;
               }
               else{
-                printf("In %d, the male name %s is not ranked.\n",decade1, searchName );
+                printf("In %d, the female name %s is not ranked.\n",decade1, searchName );
+                  femaleNameDecade1Found = 0;
               }
-              if(femaleNameDecade2Found != i){
+              if(femaleNameDecade2Found != 0){
                   printf("In %d the female name %s is ranked %d with a count of %d.\n", decade2, searchName, popularYear2.rank[femaleNameDecade2Found], popularYear2.femaleNumber[femaleNameDecade2Found] );
+                  femaleNameDecade2Found = 0;
               }
               else{
-                printf("In %d, the male name %s is not ranked.\n",decade2, searchName );
+                printf("In %d, the female name %s is not ranked.\n",decade2, searchName );
+
+                femaleNameDecade2Found = 0;
+
               }
             }
 
@@ -383,24 +393,52 @@ while(decade1Loop == 0){
               }
               if((maleNameDecade1Found != 0) && (femaleNameDecade1Found != 0)){
                 printf("In %d the female name %s is ranked %d with a count of %d and the male name %s is ranked %d with a count of %d.\n", decade1, searchName, popular.rank[femaleNameDecade1Found], popular.femaleNumber[femaleNameDecade1Found], searchName, popular.rank[maleNameDecade1Found],popular.maleNumber[maleNameDecade1Found] );
+                femaleNameDecade1Found = 0;
+                femaleNameDecade2Found = 0;
+                maleNameDecade2Found = 0;
+                maleNameDecade1Found = 0;
               }
               else if((maleNameDecade1Found != 0) && (femaleNameDecade1Found == 0)){
                 printf("In %d the female name %s is not ranked and the male name %s is ranked %d with a count of %d\n", decade1, searchName, searchName, popular.rank[maleNameDecade1Found], popular.maleNumber[maleNameDecade1Found] );
+                femaleNameDecade1Found = 0;
+                femaleNameDecade2Found = 0;
+                maleNameDecade2Found = 0;
+                maleNameDecade1Found = 0;
               }
               else if((maleNameDecade1Found == 0) && (femaleNameDecade1Found != 0)){
                 printf("In %d the female name %s is ranked %d with a count of %d and the male name %s is not ranked\n", decade1, searchName, popular.rank[femaleNameDecade1Found],popular.femaleNumber[femaleNameDecade1Found], searchName );
+                femaleNameDecade1Found = 0;
+                femaleNameDecade2Found = 0;
+                maleNameDecade2Found = 0;
+                maleNameDecade1Found = 0;
               }
               else{
                 printf("In %d the female name %s is not ranked and the male name %s is not ranked\n", decade1,searchName,searchName );
+                femaleNameDecade1Found = 0;
+                femaleNameDecade2Found = 0;
+                maleNameDecade2Found = 0;
+                maleNameDecade1Found = 0;
               }
               if((maleNameDecade2Found != 0) && (femaleNameDecade2Found != 0)){
                 printf("In %d the female name %s is ranked %d with a count of %d and the male name %s is ranked %d with a count of %d.\n", decade2, searchName, popularYear2.rank[femaleNameDecade2Found], popularYear2.femaleNumber[femaleNameDecade2Found], searchName, popularYear2.rank[maleNameDecade2Found],popularYear2.maleNumber[maleNameDecade2Found] );
+                femaleNameDecade1Found = 0;
+                femaleNameDecade2Found = 0;
+                maleNameDecade2Found = 0;
+                maleNameDecade1Found = 0;
               }
               else if((maleNameDecade2Found != 0) && (femaleNameDecade2Found == 0)){
                 printf("In %d the female name %s is not ranked and the male name %s is ranked %d with a count of %d\n", decade2, searchName, searchName, popularYear2.rank[maleNameDecade2Found], popularYear2.maleNumber[maleNameDecade2Found] );
+                femaleNameDecade1Found = 0;
+                femaleNameDecade2Found = 0;
+                maleNameDecade2Found = 0;
+                maleNameDecade1Found = 0;
               }
               else if((maleNameDecade2Found == 0) && (femaleNameDecade2Found != 0)){
                 printf("In %d the female name %s is ranked %d with a count of %d and the male name %s is not ranked\n", decade2, searchName, popularYear2.rank[femaleNameDecade2Found],popularYear2.femaleNumber[femaleNameDecade2Found], searchName );
+                femaleNameDecade1Found = 0;
+                femaleNameDecade2Found = 0;
+                maleNameDecade2Found = 0;
+                maleNameDecade1Found = 0;
               }
               else{
                 printf("In %d the female name %s is not ranked and the male name %s is not ranked\n", decade2,searchName,searchName );

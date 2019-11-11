@@ -11,6 +11,6 @@ int chop(char *line){
     line[lineLength-1] = *("");
     return(0);
   }
-
+printf("bingus\n");
   return(-1);
 }

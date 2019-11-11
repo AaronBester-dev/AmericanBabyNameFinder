@@ -266,14 +266,14 @@ while(decade1Loop == 0){
               }
 
               else if((atoi(userResponse)) == 0){
-                printf("Rank %d: %d: Male:%s (%d) \n"
-                       "        %d: Male:%s (%d)\n",rankNum,decade1, popular.maleName[rankNum-1], popular.maleNumber[rankNum-1],decade2, popularYear2.maleName[rankNum-1],popularYear2.maleNumber[rankNum-1]);
+                printf("Rank %-3d: %d: Male:%s (%d) \n"
+                       "          %d: Male:%s (%d)\n",rankNum,decade1, popular.maleName[rankNum-1], popular.maleNumber[rankNum-1],decade2, popularYear2.maleName[rankNum-1],popularYear2.maleNumber[rankNum-1]);
                 maleFemRankLoop = 1;
               }
 
               else if((atoi(userResponse)) == 1){
-              printf("Rank %d: %d: Female:%s (%d) \n"
-                     "        %d: Female:%s (%d)\n",
+              printf("Rank %-3d: %d: Female:%s (%d) \n"
+                     "          %d: Female:%s (%d)\n",
                      rankNum,decade1, popular.femaleName[rankNum-1],
                      popular.femaleNumber[rankNum-1],decade2,
                      popularYear2.femaleName[rankNum-1],popularYear2.femaleNumber[rankNum-1]);
@@ -281,8 +281,8 @@ while(decade1Loop == 0){
               }
 
               else if((atoi(userResponse)) == 2){
-                printf("Rank %d: %d: Male:%s (%d) and Female:%s (%d) \n"
-                       "        %d: Male:%s (%d) and Female:%s (%d) \n",
+                printf("Rank %-3d: %d: Male:%s (%d) and Female:%s (%d) \n"
+                       "          %d: Male:%s (%d) and Female:%s (%d) \n",
                 rankNum, decade1, popular.maleName[rankNum-1],
                 popular.maleNumber[rankNum-1], popular.femaleName[rankNum-1],
                 popular.femaleNumber[rankNum-1],decade2,popularYear2.maleName[rankNum-1],

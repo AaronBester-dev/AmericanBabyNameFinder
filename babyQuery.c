@@ -12,8 +12,8 @@ char femaleSNumber[100];
 char string[100];
 char fileName[14];
 char searchName[200];
-int maleNameFound = 0;
-int femaleNameFound = 0;
+int maleNameFound = -1;
+int femaleNameFound = -1;
 int stopLoop = 0;
 int decadeLoop = 0;
 int decade = 0;
@@ -111,7 +111,7 @@ while(stopLoop == 0){
     popular.year = decade;
     if ((f1 = fopen(fileName, "r")) !=NULL){
       index = 0;
-      while (fgets(string,100,f1)){
+      while (fgets(string,200,f1)){
         sscanf(string, "%d %s %s %s %s", &popular.rank[index], popular.maleName[index], maleSNumber, popular.femaleName[index], femaleSNumber);
 
         removeCommas(maleSNumber);
@@ -186,7 +186,6 @@ while(stopLoop == 0){
           while(maleFemSearchLoop == 0){
             printf("Do you wish to search male (0), female (1), or both (2) name(s)? [0-2]\n");
             fgets(userResponse, 200, stdin);
-            printf("%s\n",userResponse );
             if((atoi(userResponse)) == 0){
               maleFemSearchLoop = 1;
               for(i = 0; i < 200; i++){
@@ -194,13 +193,13 @@ while(stopLoop == 0){
                   maleNameFound = i;
                 }
               }
-              if(maleNameFound != 0){
+              if(maleNameFound >= 0){
                   printf("In %d the male name %s is ranked %d with a count of %d.\n", decade, searchName, popular.rank[maleNameFound], popular.maleNumber[maleNameFound] );
-                  maleNameFound = 0;
+                  maleNameFound = -1;
               }
               else{
                 printf("In %d, the male name %s is not ranked.\n",decade, searchName );
-                  maleNameFound = 0;
+                maleNameFound = -1;
               }
             }
 
@@ -210,15 +209,14 @@ while(stopLoop == 0){
                 if((strcmp(searchName,popular.femaleName[i])) == 0){
                   femaleNameFound = i;
                 }
-
               }
-              if(femaleNameFound != 0){
+              if(femaleNameFound >= 0){
                   printf("In %d the female name %s is ranked %d with a count of %d.\n", decade, searchName, popular.rank[femaleNameFound], popular.femaleNumber[femaleNameFound] );
-                    femaleNameFound = 0;
+                    femaleNameFound = -1;
               }
               else{
                 printf("In %d, the female name %s is not ranked.\n",decade, searchName );
-                  femaleNameFound = 0;
+                  femaleNameFound = -1;
               }
             }
 
@@ -236,25 +234,25 @@ while(stopLoop == 0){
                 }
 
               }
-              if((maleNameFound != 0) && (femaleNameFound != 0)){
+              if((maleNameFound >= 0) && (femaleNameFound >= 0)){
                 printf("In %d the female name %s is ranked %d with a count of %d and the male name %s is ranked %d with a count of %d.\n", decade, searchName, popular.rank[femaleNameFound], popular.femaleNumber[femaleNameFound], searchName, popular.rank[maleNameFound],popular.maleNumber[maleNameFound] );
-                maleNameFound = 0;
-                femaleNameFound = 0;
+                maleNameFound = -1;
+                femaleNameFound = -1;
               }
-              else if((maleNameFound != 0) && (femaleNameFound == 0)){
+              else if((maleNameFound >= 0) && (femaleNameFound < 0)){
                 printf("In %d the female name %s is not ranked and the male name %s is ranked %d with a count of %d\n", decade, searchName, searchName, popular.rank[maleNameFound], popular.maleNumber[maleNameFound] );
-                maleNameFound = 0;
-                femaleNameFound = 0;
+                maleNameFound = -1;
+                femaleNameFound = -1;
               }
-              else if((maleNameFound == 0) && (femaleNameFound != 0)){
+              else if((maleNameFound < 0) && (femaleNameFound >= 0)){
                 printf("In %d the female name %s is ranked %d with a count of %d and the male name %s is not ranked\n", decade, searchName, popular.rank[femaleNameFound],popular.femaleNumber[femaleNameFound], searchName );
-                maleNameFound = 0;
-                femaleNameFound = 0;
+                maleNameFound = -1;
+                femaleNameFound = -1;
               }
               else{
                 printf("In %d the female name %s is not ranked and the male name %s is not ranked\n", decade,searchName,searchName );
-                maleNameFound = 0;
-                femaleNameFound = 0;
+                maleNameFound = -1;
+                femaleNameFound = -1;
               }
             }
             else{

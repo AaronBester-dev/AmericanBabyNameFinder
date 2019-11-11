@@ -145,11 +145,13 @@ while(stopLoop == 0){
             rankNumLoop = 1;
 
             while(maleFemRankLoop == 0){
-
               printf("Would you like to see the male (0), female (1), or both (2) name(s)? [0-2] \n");
               fgets(userResponse, 200, stdin);
+              if(*userResponse < *"0" || *userResponse > *"9"){
+                printf("Only the numbers 0, 1, or 2 are acceptable.\n");
+              }
 
-              if((atoi(userResponse)) == 0){
+              else if((atoi(userResponse)) == 0){
                 printf("Rank %d: Male:%s (%d) \n",rankNum, popular.maleName[rankNum-1], popular.maleNumber[rankNum-1]);
                 maleFemRankLoop = 1;
               }
@@ -186,7 +188,10 @@ while(stopLoop == 0){
           while(maleFemSearchLoop == 0){
             printf("Do you wish to search male (0), female (1), or both (2) name(s)? [0-2]\n");
             fgets(userResponse, 200, stdin);
-            if((atoi(userResponse)) == 0){
+            if(*userResponse < *"0" || *userResponse > *"9"){
+              printf("Only the numbers 0, 1, or 2 are acceptable.\n");
+            }
+            else if((atoi(userResponse)) == 0){
               maleFemSearchLoop = 1;
               for(i = 0; i < 200; i++){
                 if((strcmp(searchName,popular.maleName[i])) == 0){

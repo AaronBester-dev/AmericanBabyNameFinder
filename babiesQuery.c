@@ -47,7 +47,7 @@ while(stopLoop == 0){
 while(decade1Loop == 0){
 
         while(decadeEqualCheck == 0){
-          printf("What decade do you want to look at? [1880 to 2010]\n");
+          printf("What decade do you want to look at? [1880 to 2010]:");
           fgets(userResponse, 200, stdin);
           sscanf(userResponse, "%d %d", &decade1, &decade2);
 
@@ -241,14 +241,14 @@ while(decade1Loop == 0){
 
 
     while(searchTopRankLoop == 0){
-      printf("Would you like to see a rank, search for a name, or see the top 10 [rank, search, top]\n");
+      printf("Would you like to see a rank, search for a name, or see the top 10 [rank, search, top]:");
       fgets(userResponse, 200, stdin);
 
       if((strcmp(userResponse,"rank\n")) == 0){
         searchTopRankLoop = 1;
         while(rankNumLoop == 0){
 
-          printf("What rank do you wish to see? [1-200]\n");
+          printf("What rank do you wish to see? [1-200]:");
           fgets(userResponse, 200, stdin);
           rankNum = atoi(userResponse);
 
@@ -258,7 +258,7 @@ while(decade1Loop == 0){
 
             while(maleFemRankLoop == 0){
 
-              printf("Would you like to see the male (0), female (1), or both (2) name(s)? [0-2] \n");
+              printf("Would you like to see the male (0), female (1), or both (2) name(s)? [0-2]:");
               fgets(userResponse, 200, stdin);
 
               if(*userResponse < *"0" || *userResponse > *"9"){
@@ -306,12 +306,12 @@ while(decade1Loop == 0){
       }
       else if((strcmp(userResponse,"search\n")) == 0) {
           searchTopRankLoop = 1;
-          printf("What name do you wish to search for? [case sensitive]\n");
+          printf("What name do you wish to search for? [case sensitive]:");
           fgets(searchName, 200, stdin);
           chop(searchName);
 
           while(maleFemSearchLoop == 0){
-            printf("Do you wish to search male (0), female (1), or both (2) name(s)? [0-2]\n");
+            printf("Do you wish to search male (0), female (1), or both (2) name(s)? [0-2]:");
             fgets(userResponse, 200, stdin);
 
             if(*userResponse < *"0" || *userResponse > *"9"){
@@ -473,7 +473,7 @@ while(decade1Loop == 0){
       }
     }
   while (decadeReturnLoop == 0) {
-    printf("Do you want to ask another question about %d and %d? [Y or N]\n", decade1,decade2);
+    printf("Do you want to ask another question about %d and %d? [Y or N]:", decade1,decade2);
     fgets(userResponse, 200, stdin);
     if(userResponse[0] == *("Y")){
       decadeReturnLoop = 1;
@@ -485,7 +485,7 @@ while(decade1Loop == 0){
   else if(userResponse[0] == *("N")){
       decadeReturnLoop = 1;
       while(finalQuestionLoop == 0){
-        printf("Would you like to select other decades? [Y or N]\n");
+        printf("Would you like to select other decades? [Y or N]:");
         fgets(userResponse, 200, stdin);
         if(userResponse[0] == *("Y")){
           finalQuestionLoop = 1;

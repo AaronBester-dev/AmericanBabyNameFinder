@@ -1,9 +1,5 @@
 all: babyQuery babiesQuery
 	
-
-babyQueries.o: babyQueries.c
- 
-	
 babyQuery: babyQuery.o removeCommas.o chop.o
 		gcc -ansi -Wall babyQuery.o removeCommas.o chop.o -o babyQuery
 
